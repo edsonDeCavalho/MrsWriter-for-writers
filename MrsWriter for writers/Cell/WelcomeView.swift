@@ -7,53 +7,57 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct WelcomeView: View {
     @State private var isLogoVisible = false
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.green
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    Image("Logoapp")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding()
-                        .frame(maxWidth: 300)
-                        .opacity(isLogoVisible ? 1 : 0) // Animation: fade in
-                        .animation(.easeIn(duration: 1.0), value: isLogoVisible) // Set animation
+        NavigationStack { // Use NavigationStack instead of NavigationView
+            GeometryReader { geometry in
+                ZStack {
+                    Color.green
+                        .edgesIgnoringSafeArea(.all)
 
-                    Text("welcometomrswriter")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center) // Center-align text
-                        .padding()
-                        .padding(.horizontal, 20) // Add horizontal padding for smaller screens
-
-                    NavigationLink(destination: IntroOne()) {
-                        Text("continuebutton")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                    VStack {
+                        Image("Logoapp")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .padding()
-                            .background(Color.white)
-                            .foregroundColor(.black)
-                            .cornerRadius(28) // Adjust corner radius for smaller buttons
+                            .frame(maxWidth: geometry.size.width * (UIDevice.current.userInterfaceIdiom == .pad ? 0.5 : 0.7)) // Adjust width based on device
+                            .opacity(isLogoVisible ? 1 : 0) // Animation: fade in
+                            .animation(.easeIn(duration: 1.0), value: isLogoVisible)
+
+                        Text("welcometomrswriter")
+                            .font(.system(size: geometry.size.width * (UIDevice.current.userInterfaceIdiom == .pad ? 0.05 : 0.07), weight: .bold))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .padding(.horizontal, geometry.size.width * 0.1) // Adjust padding relative to screen size
+
+                        NavigationLink(destination: IntroOne()) {
+                            Text("continuebutton")
+                                .font(.system(size: geometry.size.width * (UIDevice.current.userInterfaceIdiom == .pad ? 0.04 : 0.05), weight: .bold))
+                                .padding()
+                                .background(Color.white)
+                                .foregroundColor(.black)
+                                .cornerRadius(28)
+                                .frame(maxWidth: geometry.size.width * (UIDevice.current.userInterfaceIdiom == .pad ? 0.4 : 0.6)) // Adjust button width
+                        }
+                        .padding(.top, 20)
                     }
-                    .padding(.top, 20) // Add padding above the button
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure the VStack fills the screen
                 }
-                .padding() // General padding for the VStack
-                .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure the VStack expands to fill available space
+                .onAppear {
+                    isLogoVisible = true // Trigger the fade-in animation when the view appears
+                }
             }
-            .onAppear {
-                isLogoVisible = true // Trigger the fade-in animation when the view appears
-            }
+            .navigationBarHidden(true) // Hide the navigation bar if desired
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
+
+
 #Preview {
     WelcomeView()
 }

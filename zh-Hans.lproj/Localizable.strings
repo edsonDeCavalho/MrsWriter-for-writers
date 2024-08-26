@@ -64,3 +64,6 @@
 "movetbook"="移动到书籍";
 "book_created_message"="书籍 %@ 已创建";
 "ok_button"="确定";
+
+
+"NoBooksMessage" = "您没有书籍。请创建一本。";

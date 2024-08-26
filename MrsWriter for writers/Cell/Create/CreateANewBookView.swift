@@ -8,7 +8,6 @@ import CoreData
 import UIKit
 import SwiftUI
 import SwiftData
-
 struct CreateANewBookView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var title: String = ""
@@ -24,32 +23,34 @@ struct CreateANewBookView: View {
     @State private var createdBook: BookClass?
     
     let bookTypes = ["fic", "non-fic", "biogra", "fanty", "science", "mis"]
-    let colors: [Color] = [.red, .green, .blue, .yellow, .orange, .purple, .gray]
+    let colors: [Color] = [.red, .green, .yellow, .orange, .purple, .gray]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("book_title")) {
-                    TextField("Enter_book_title", text: $title)
+                    TextField("Enter book title", text: $title)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .font(.system(size: adaptiveFontSize(isTitle: true)))
                 }
                 
                 Section(header: Text("book_description")) {
                     TextEditor(text: $description)
-                        .frame(height: 100)
+                        .frame(height: 150) // Increased height for iPad
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                         )
+                        .font(.system(size: adaptiveFontSize(isTitle: false)))
                 }
                 
-                Section(header: Text("SelectBookcolor")) {
+                Section(header: Text("Select Book Color")) {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
+                        HStack(spacing: 10) {
                             ForEach(colors, id: \.self) { color in
                                 Circle()
                                     .fill(color)
-                                    .frame(width: 40, height: 40)
+                                    .frame(width: 50, height: 50) // Adjusted size for iPad
                                     .overlay(
                                         Circle()
                                             .stroke(Color.black, lineWidth: selectedColor == color ? 3 : 0)
@@ -58,37 +59,40 @@ struct CreateANewBookView: View {
                                         selectedColor = color
                                     }
                             }
-                        }.padding()
+                        }
+                        .padding()
                     }
                 }
                 
-                Section(header: Text(NSLocalizedString("selectbooktype", comment: "Select book type"))) {
-                    Picker(NSLocalizedString("booktype", comment: "Book type"), selection: $selectedType) {
+                Section(header: Text("Select Book Type")) {
+                    Picker("Book Type", selection: $selectedType) {
                         ForEach(bookTypes, id: \.self) { bookTypeKey in
                             Text(NSLocalizedString(bookTypeKey, comment: ""))
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
+                    .font(.system(size: adaptiveFontSize(isTitle: false))) // Adjust font size
                 }
                 
                 Section {
                     Button(action: createBook) {
-                        Text("createbook")
+                        Text("Create Book")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(10)
+                            .font(.system(size: adaptiveFontSize(isTitle: false))) // Adjust font size
                     }
                 }
                 .background(Color.clear)
             }
-            .navigationTitle("createnewbook")
+            .navigationTitle("Create New Book")
             .listStyle(GroupedListStyle())
             .alert(isPresented: $showConfirmationAlert) {
                 Alert(
-                    title: Text(NSLocalizedString("livrecree", comment: "Book created")),
-                    message: Text(NSLocalizedString("thebook", comment: "The book has been created")),
+                    title: Text(NSLocalizedString("Book Created", comment: "Book created")),
+                    message: Text(NSLocalizedString("The book has been created", comment: "The book has been created")),
                     dismissButton: .default(Text("OK"), action: {
                         // Dismiss the current view and navigate to HomeView
                         presentationMode.wrappedValue.dismiss()
@@ -122,6 +126,12 @@ struct CreateANewBookView: View {
         showConfirmationAlert = true
         print("Book Created: \(booknew)")
     }
+    
+    private func adaptiveFontSize(isTitle: Bool) -> CGFloat {
+        let baseSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? (isTitle ? 24 : 18) : (isTitle ? 18 : 14)
+        return baseSize
+    }
+    
 }
 
 

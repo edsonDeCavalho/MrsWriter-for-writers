@@ -65,3 +65,4 @@
 "book_created_message"="Das Buch %@ wurde erstellt";
 "ok_button"="OK";
 
+"NoBooksMessage" = "Sie haben keine Bücher. Bitte erstellen Sie eines.";

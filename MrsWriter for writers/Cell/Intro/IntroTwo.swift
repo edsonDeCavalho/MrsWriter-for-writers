@@ -16,65 +16,67 @@ struct IntroTwo: View {
     @State private var navigate = false // State variable to trigger navigation
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                
-                // Prompt Text
-                Text("Intro2_nameofchapter")
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, geometry.size.width * 0.1)
-                
-                Spacer(minLength: 10)
-                
-                // Text Field
-                TextField("Intro2_chapter", text: $firstChapterName)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(8)
-                    .padding(.horizontal, geometry.size.width * 0.1)
-                
-                Spacer(minLength: 20)
-                
-                Button(action: {
-                    // Call your function to create or retrieve the bookid
-                    saveText()
-                    navigate = true // Trigger navigation
-                }) {
-                    Text(NSLocalizedString("Intro2_btncontinue", comment: ""))
-                                      .font(.title3)
-                                      .fontWeight(.bold)
-                                      .padding()
-                                      .frame(maxWidth: .infinity)
-                                      .background(Color.white)
-                                      .foregroundColor(.black)
-                                      .cornerRadius(28)
-                                      .padding(.horizontal, 100) // Adjust padding based on geometry
+     
+            GeometryReader { geometry in
+                VStack {
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    
+                    // Prompt Text
+                    Text("Intro2_nameofchapter")
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, geometry.size.width * 0.1)
+                    
+                    Spacer(minLength: 10)
+                    
+                    // Text Field
+                    TextField("Intro2_chapter", text: $firstChapterName)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .padding(.horizontal, geometry.size.width * 0.1)
+                    
+                    Spacer(minLength: 20)
+                    
+                    Button(action: {
+                        // Call your function to create or retrieve the bookid
+                        saveText()
+                        navigate = true // Trigger navigation
+                    }) {
+                        Text(NSLocalizedString("Intro2_btncontinue", comment: ""))
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white)
+                            .foregroundColor(.black)
+                            .cornerRadius(28)
+                            .padding(.horizontal, 100) // Adjust padding based on geometry
                     }
                     .padding(.top, 20)
-    
+                    
                     NavigationLink(destination: IntroTree(), isActive: $navigate) {
                         EmptyView() // Empty view as the label since the navigation is handled by the Button
                     }
-                
-                Spacer()
-                
-                // Image at the Bottom
-                Image("FoxBig") // Replace "FoxBig" with the actual image name
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: geometry.size.width * 0.6) // Image width relative to screen size
-                    .padding(.bottom, 10)
+                    
+                    Spacer()
+                    
+                    // Image at the Bottom
+                    Image("FoxBig") // Replace "FoxBig" with the actual image name
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width * 0.6) // Image width relative to screen size
+                        .padding(.bottom, 10)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity) // Full screen
+                .background(Color.green)
+                .edgesIgnoringSafeArea(.all) // Ignore safe area to make it full screen
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // Full screen
-            .background(Color.green)
-            .edgesIgnoringSafeArea(.all) // Ignore safe area to make it full screen
-        }
+        
     }
     
     private func saveText() {

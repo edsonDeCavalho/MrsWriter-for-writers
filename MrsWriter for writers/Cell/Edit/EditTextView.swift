@@ -71,17 +71,18 @@ struct EditTextView: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
                         }
                         .padding()
                     }
                 }
             }
             .overlay(
-                ToastToShoose(message: "changessaved", isShowing: $showingSaveToast)
-                    .transition(.opacity)
-                    .animation(.easeInOut(duration: 1.5), value: showingSaveToast)
-            )
+                ToastToShoose(
+                    message: NSLocalizedString("changessaved", comment: "Changes saved successfully"),
+                    isShowing: $showingSaveToast
+                ))
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 1.5), value: showingSaveToast)
             .alert(isPresented: $showingDeleteConfirmation) {
                 Alert(
                     title: Text("deletedText"),
@@ -98,14 +99,20 @@ struct EditTextView: View {
                         .font(.headline)
                         .padding()
 
-                    List(books) { book in
-                        Button(action: {
-                            text.book_id = book.id.uuidString  // Update the book associated with the text
-                            text.color = book.color  // Update the book associated with the text
-                            saveText()  // Save the changes
-                            showingBookSelection = false  // Dismiss the sheet
-                        }) {
-                            Text(book.title)
+                    if(books.isEmpty){
+                        Text(NSLocalizedString("NoBooksMessage", comment: "Message when there are no books"))
+                                           .padding()
+                                           .font(.title3)
+                    }else{
+                        List(books) { book in
+                            Button(action: {
+                                text.book_id = book.id.uuidString  // Update the book associated with the text
+                                text.color = book.color  // Update the book associated with the text
+                                saveText()  // Save the changes
+                                showingBookSelection = false  // Dismiss the sheet
+                            }) {
+                                Text(book.title)
+                            }
                         }
                     }
                 }

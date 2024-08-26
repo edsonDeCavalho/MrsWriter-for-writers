@@ -64,3 +64,6 @@
 "movetbook"="Mută într-o carte";
 "book_created_message"="Cartea %@ a fost creată";
 "ok_button"="OK";
+
+
+"NoBooksMessage" = "Nu aveți cărți. Vă rugăm să creați una.";

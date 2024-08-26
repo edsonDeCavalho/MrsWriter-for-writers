@@ -165,7 +165,6 @@
 				A77130852C5558C800619951 /* WelcomeView.swift */,
 				A738ADBD2C60B75900D76946 /* listOfBooks.swift */,
 				A738ADC52C60D5EC00D76946 /* FloattingButtomCreateView.swift */,
-				A738ADCA2C60F50900D76946 /* PopUpCreationView.swift */,
 				A7405B902C712487005990EE /* CreateBook.swift */,
 				A7405B952C72BA23005990EE /* LaunchScreen.storyboard */,
 			);
@@ -218,6 +217,7 @@
 		A723A16B2C7379D9003FCB1E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A738ADCA2C60F50900D76946 /* PopUpCreationView.swift */,
 				A723A16C2C7379F9003FCB1E /* FloattingButton.swift */,
 			);
 			path = Components;

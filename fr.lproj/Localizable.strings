@@ -23,7 +23,7 @@
 "SelectBookcolor"="Sélectionnez la couleur du livre";
 "selectbooktype"="Sélectionnez le type de livre";
 "booktype"="Type de livre";
-"createbook"="Créer un livre";
+"createbook"="Créer un \n livre";
 "createnewbook"="Créer un nouveau livre";
 "livrecree"="Livre créé";
 "thebook"="Le livre a été créé";
@@ -64,3 +64,5 @@
 "movetbook"="Déplacer vers un livre";
 "book_created_message"="Le livre %@ a été créé.";
 "ok_button"="OK";
+
+"NoBooksMessage" = "Vous n'avez pas de livres. Veuillez en créer un.";

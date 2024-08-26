@@ -64,3 +64,6 @@
 "movetbook"="Moure a un llibre";
 "book_created_message"="El llibre %@ ha estat creat";
 "ok_button"="D'acord";
+
+
+"NoBooksMessage" = "No teniu llibres. Si us plau, en creeu un.";

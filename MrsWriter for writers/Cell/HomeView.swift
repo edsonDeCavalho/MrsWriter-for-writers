@@ -9,36 +9,26 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var isNavigating: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                ListOfBooks(books: BookClass.previewBooksClass)
-                Spacer()
-                ListOfTexte(textes: TextClass.previewTextsClass)
-            }
-            .navigationTitle("welcomeback")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        print("Icon tapped on the left side")
-                    }) {
-                        Image("Logoapp")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                    }
+                VStack {
+                    // List of books
+                    ListOfBooks(books: BookClass.previewBooksClass)
+
+                    // Spacer to push the next content down
+                    Spacer(minLength: 20)
+
+                    // List of texts
+                    ListOfTexte(textes: TextClass.previewTextsClass)
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        print("Icon tapped in DetailView")
-                    }) {
-                        Image(systemName: "book.fill")
-                    }
-                }
+                .padding(.bottom, 5) // Add padding to the bottom if needed
+                .padding(.top, 80) // Add padding to the bottom if needed
             }
-            .navigationBarBackButtonHidden(true) // Hide the back button
+            .edgesIgnoringSafeArea(.top) // Ignore the top safe area to remove the space
+            .navigationTitle("Welcome Back") // Ensure title is set correctly
         }
-        .navigationBarBackButtonHidden(true) // Ensure back button is hidden at all levels
     }
 }
 

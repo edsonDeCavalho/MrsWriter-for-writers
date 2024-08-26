@@ -64,3 +64,6 @@
 "movetbook"="Move to a Book";
 "book_created_message"="The book %@ has been created";
 "ok_button"="OK";
+
+
+"NoBooksMessage" = "You do not have any books. Please create one.";
