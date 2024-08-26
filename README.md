@@ -29,4 +29,4 @@ To install MrsWriter on your local machine:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/mrswriter.git
+   git clone https://github.com/edsonDeCavalho/MrsWriter-for-writers
