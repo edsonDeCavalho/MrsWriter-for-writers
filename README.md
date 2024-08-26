@@ -3,6 +3,12 @@
 
 Unleash your creativity and turn your ideas into published books with **MrsWriter for Writers**—the ultimate app designed to make book writing easy and enjoyable. Whether you're an aspiring author, a seasoned writer, or someone with a story to tell, MrsWriter is your perfect companion on the journey to creating multiple books, all from one powerful, intuitive platform.
 
+##Screens
+
+![alt text](./img/1.png)![alt text](./img/2.png)![alt text](./img/3.png)![alt text](./img/4.png)![alt text](./img/5.png)![alt text](./img/6.png)![alt text](./img/7.png)
+
+
+
 ## Why Choose MrsWriter for Writers?
 
 - **Effortless Writing:** MrsWriter simplifies the writing process, allowing you to focus on what matters most—your story. Say goodbye to complicated software and hello to an app that lets you write with ease.
